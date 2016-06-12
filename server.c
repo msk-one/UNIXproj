@@ -94,22 +94,61 @@ int make_socket(int domain, int type)
     return sock;
 }
 
+char** read_from_databank(char *name) {
+
+}
+
+int validate_login(char **users, char *username, char *password) {
+
+    return 0;
+}
+
+int check_for_user(char **users, char *username) {
+
+}
+
+int add_new_user(char *username, char *password) {
+
+}
+
+int handle_login(int clientfd) {
+    ssize_t size;
+    char buffer[CHUNKSIZE+1];
+
+    if((size=bulk_read(clientfd,(char *)buffer,CHUNKSIZE+1))<0)
+        ERR("read:");
+
+    char **users;
+    users = read_from_databank("users.db");
+
+    if(check_for_user(users, buffer)>0) {
+
+    }
+    else {
+
+    }
+}
+
 void communicate(int clientfd)
 {
-    int fd;
     ssize_t size;
     char command[COMM_SIZE+1];
-    char buffer[CHUNKSIZE];
+    //char buffer[CHUNKSIZE];
 
     if ((size = TEMP_FAILURE_RETRY(recv(clientfd, command, COMM_SIZE + 1, MSG_WAITALL))) == -1)
         ERR("read");
     if (size == COMM_SIZE + 1)
     {
         if (strcmp(command, "login")) {
+            if(handle_login(clientfd)>0) {
 
+            }
+            else {
+                fprintf(stderr, "Incorrect username/password combination");
+            }
         }
         else {
-
+            fprintf(stderr, "Error in message!");
         }
     }
     if (TEMP_FAILURE_RETRY(close(clientfd)) < 0)
