@@ -3,8 +3,6 @@
 //
 
 #define _GNU_SOURCE
-#define _GNU_SOURCE
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -87,22 +85,22 @@ int make_socket(int domain, int type) {
     return sock;
 }
 
-char **read_from_databank(char *name) {
-
-}
+//char **read_from_databank(char *name) {
+//
+//}
 
 int validate_login(char **users, char *username, char *password) {
 
     return 0;
 }
 
-int check_for_user(char **users, char *username) {
-
-}
-
-int add_new_user(char *username, char *password) {
-
-}
+//int check_for_user(char **users, char *username) {
+//
+//}
+//
+//int add_new_user(char *username, char *password) {
+//
+//}
 
 int handle_login(int clientfd) {
     ssize_t size;
@@ -111,15 +109,16 @@ int handle_login(int clientfd) {
     if ((size = bulk_read(clientfd, (char *) buffer, CHUNKSIZE + 1)) < 0)
         ERR("read:");
 
-    char **users;
-    users = read_from_databank("users.db");
+   // char **users;
+    //users = read_from_databank("users.db");
 
-    if (check_for_user(users, buffer) > 0) {
+    //if (check_for_user(users, buffer) > 0) {
 
-    }
-    else {
+    //}
+    //else {
 
-    }
+    //}
+    return 0;
 }
 
 void communicate(int clientfd) {
